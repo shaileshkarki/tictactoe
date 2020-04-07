@@ -1,5 +1,5 @@
-var player1 = true;
-var player2 = false;
+var player1 = 1;
+var player2 = 2;
 var x = 'X';
 var o = 'O';
 var counter = 0;
@@ -16,20 +16,23 @@ var handleChangeDiv = function (event) {
             event.target.textContent = x;
         }
         arr[temp] = event.target.textContent;
-        if (winCheck()) {
-            if (player1) {
+        var check = winCheck();
+        if (check[0]) {
+            if (check[1] == 'O') {
                 result.textContent = "Player 1 won the game";
             } else {
                 result.textContent = "Player 2 won the game";
             }
         }
         counter++;
+        if(counter == 9 && !winCheck()) {
+            result.textContent = "The game is Draw";
+        }
         player1 = (!player1);
     }
 }
 
 var checkDivEmpty = function (div) {
-   //if (div.textContent !== 'X' || div.textContent !== 'O') {
     if (div == '') {
        return true;
    } else {
@@ -38,23 +41,21 @@ var checkDivEmpty = function (div) {
 }
 
 var winCheck = function () {
-    var winStatus = false;   
+    var winStatus = [false,''];   
     if (arr.length > 1   ) {
         if (arr[0] === arr[1] && arr[1] === arr[2]) {
-            winStatus = true;
+            winStatus = [true,arr[0]];
         } else if (arr[0] === arr[3] && arr[3] === arr[6]) {
-            winStatus = true;
+            winStatus = [true,arr[0]];
         } else if (arr[0] === arr[4] && arr[4] === arr[8]) {
-            winStatus = true;
+            winStatus = [true,arr[0]];
         } else if (arr[1] === arr[4] && arr[4] === arr[7]) {
-            winStatus = true;
+            winStatus = [true,arr[7]];
         } else if (arr[2] === arr[5] && arr[5] === arr[8]) {
-            winStatus = true;
+            winStatus = [true,arr[5]];
         } else if (arr[6] === arr[4] && arr[4] === arr[2]) {
-            winStatus = true;
-        } else {
-    
-        }
+            winStatus = [true,arr[2]];
+        } 
     }
     return winStatus;
 }
