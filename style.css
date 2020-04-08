@@ -24,8 +24,31 @@ main {
     border: 2px solid black;
     font-size: 3rem;
 }
-.result {
+.result, .turn, .new {
     text-align: center;
     margin: 10px;
     font-size: 2rem;
+}
+
+.winLine {
+    background-color: maroon;
+}
+.game-header {
+    width:100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    font-size: x-large;
+}
+.player-name {
+    width: 50%;
+    display: grid;
+    grid-template-columns: 1fr;
+    padding-left:25%;
+    padding-top: 25%;
+}
+.scoreboard {
+    
+    text-align: right;
+    padding-right: 25%;
+    padding-top: 25%;
 }

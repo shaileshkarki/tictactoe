@@ -11,19 +11,40 @@
         <header>
 
         </header>
-        <main>
-            <div class="container">
-                    <div class ="div0"></div>
-                    <div class ="div1"></div>
-                    <div class ="div2"></div>
-                    <div class ="div3"></div>
-                    <div class ="div4"></div>
-                    <div class ="div5"></div>
-                    <div class ="div6"></div>
-                    <div class ="div7"></div>
-                    <div class ="div8"></div>
-                </div>   
+        <section class="game-header">
+            <div class="player-name">
+               <div>
+                    <input type="text" class="p1Name" placeholder="Player1 Name">
+                    <input type="text" class="p1Symbol" placeholder="Player1 symbol: (default is X)">
+                    <input type="text" class="p2Name" placeholder="Player2 Name">
+                    <input type="text" class="p2Symbol" placeholder="Player2 symbol: (default is O)">
+                    <button class="change-info">Change</button>
+                </div>
             </div>
+            <div class="scoreboard">
+                Score:<br>
+                <span class="p1-name">Player1</span>: <span class="p1"></span><br>
+                <span class="p2-name">Player2</span>: <span class="p2"></span><br>
+                Total Games: <span class="total"></span>
+            </div>
+        </section>
+        <main>           
+            <div class="turn">
+            </div>
+            <div class="container">
+                <div class ="div0"></div>
+                <div class ="div1"></div>
+                <div class ="div2"></div>
+                <div class ="div3"></div>
+                <div class ="div4"></div>
+                <div class ="div5"></div>
+                <div class ="div6"></div>
+                <div class ="div7"></div>
+                <div class ="div8"></div>
+            </div>   
+            </div>
+            <div class ="new"> <button class="new-btn">Play Again</button> 
+                <button class="restart-btn">Restart</button></div>
             <div class="result"></div>
         </main>
     </div>
