@@ -1,4 +1,3 @@
-//var player1 = true; var player2 = false;
 var turnToPlay;
 var player1 = "Player 1";
 var player2 = "Player 2";
@@ -6,22 +5,24 @@ var player1Symbol = 'X';
 var player2Symbol = 'O';
 var player1Win = 0;
 var player2Win = 0;
+var draw = 0;
 var numberOfGame = 0;
 var counter = 0;
-//var gameEnd = false; //to check if game is over i.e., game is not won before filling up all boxes
-var arr = [0,1,2,3,4,5,6,7,8,9];
+var arr = [1,2,3,4,5,6,7,8,9];
+var gameDecided = false;
 var div = document.querySelectorAll('.container>div');
-var result = document.querySelector('.result');
+var message = document.querySelector('.message');
 var turn = document.querySelector('.turn');
-var score1= document.querySelector('.p1');
-var score2= document.querySelector('.p2');
-var totalGames= document.querySelector('.total');
+var score1 = document.querySelector('.p1');
+var score2 = document.querySelector('.p2');
+var tie = document.querySelector('.draw');
+var totalGames = document.querySelector('.total');
 var newGame = document.querySelector('.new-btn');
 var restartGame = document.querySelector('.restart-btn');
 var changeInfo = document.querySelector('.change-info');
 
 var handleChangeDiv = function (event) {   
-    if (checkDivEmpty(event.target.textContent)) {
+    if (checkDivEmpty(event.target.textContent) && !gameDecided) {
         var temp = Number(event.target.classList.item(0).charAt(3));
         if (turnToPlay == 1) {
             event.target.textContent = player1Symbol;
@@ -32,16 +33,17 @@ var handleChangeDiv = function (event) {
         var check = gameStatus();
         if (check[0]) {
             if (check[1] == player1Symbol) {
-                result.textContent = player1 + " won the game";
+                message.textContent = player1 + " won the game";
                 player1Win++;
             } else {
-                result.textContent = player2 + " won the game";
+                message.textContent = player2 + " won the game";
                 player2Win++;
             }
         } 
         counter++;
+        document.querySelector('.player-info').style.display = "none";
         if(counter == 9 && !check[0]) {
-            result.textContent = "This game is Draw";
+            message.textContent = "This game is Draw";
         }
         if(turnToPlay === 1) {
             turnToPlay = 2;
@@ -65,13 +67,15 @@ var gameStatusCheck = function  (num1, num2, num3) {
         displayLine(num1);
         displayLine(num2);
         displayLine(num3);
+        gameDecided = true;
         return true;
     }
 }
 
 var gameStatus = function () {
-    var winStatus = [false,''];   
-    if (!arr.includes(' ')) {
+    var winStatus = [false,'']; 
+
+    if (!arr.includes('')) {
         if (gameStatusCheck(0,1,2)) {
             winStatus = [true,arr[0]];
         } else if (gameStatusCheck(0,3,6)) {
@@ -104,6 +108,7 @@ var checkTurn = function () {
 var score = function () {
     score1.textContent = player1Win;
     score2.textContent = player2Win;
+    tie.textContent = draw;
     totalGames.textContent = numberOfGame;
 }
 
@@ -112,9 +117,15 @@ var displayLine = function(num) {
 }
 
 var handleNewGame = function () {
-    arr = [0,1,2,3,4,5,6,7,8,9];
+    arr = [1,2,3,4,5,6,7,8,9];
+    counter = 0;
+    //document.querySelector('.player-info').style.display = "block";
     numberOfGame++;
-    result.textContent = ' ';
+    if (!gameDecided) {
+        draw++;
+    }
+    gameDecided = false;
+    message.textContent = ' ';
     div.forEach(function (divPointer) {
         divPointer.textContent = '';
         divPointer.style.backgroundColor = "antiquewhite";
@@ -124,19 +135,15 @@ var handleNewGame = function () {
 }
 
 var startingFirst = function () {
+    turn.textContent = "";
     var number = Math.floor(Math.random() * 2) + 1;
     if (number === 1) {
-        play = true;
-    } else {
-        play = false;
-    }
-    turn.textContent = "";
-    if (number === 1) {
+        turnToPlay = 1;
         turn.textContent = player1 + " will start the game";
-        
     } else {
+        turnToPlay = 2;
         turn.textContent = player2 + " will start the game";
-    }
+    }  
 }
 
 var handleRestartGame = function () {
@@ -144,36 +151,42 @@ var handleRestartGame = function () {
 }
 
 var handleChangeInfo = function () {
-    if (document.querySelector('.p1Name').value != '') {
-       player1 = document.querySelector('.p1Name').value; 
+    if (counter == 0) {
+        if (document.querySelector('.p1Name').value != '') {
+            player1 = document.querySelector('.p1Name').value; 
+         } else {
+             player1 = "Player 1";
+         }
+         if (document.querySelector('.p1Symbol').value != '') {
+             if (document.querySelector('.p1Symbol').value.length >= 1) 
+             player1Symbol = document.querySelector('.p1Symbol').value.charAt(0);
+         }
+         if (document.querySelector('.p2Name').value != '') {
+            player2 = document.querySelector('.p2Name').value; 
+         } else {
+             player2 = "Player 2";
+         }
+         if (document.querySelector('.p2Symbol').value != '') {
+             if (document.querySelector('.p2Symbol').value.length >= 1) 
+             player2Symbol = document.querySelector('.p2Symbol').value.charAt(0);
+         }
+             document.querySelector('.p1-name').textContent = player1;
+             document.querySelector('.p2-name').textContent = player2;
+     
     }
-    if (document.querySelector('.p1Symbol').value != '') {
-        if (document.querySelector('.p1Symbol').value.length >= 1) 
-        player1Symbol = document.querySelector('.p1Symbol').value.charAt(0);
-    }
-    if (document.querySelector('.p2Name').value != '') {
-        player2 = document.querySelector('.p2Name').value; 
-    }
-    if (document.querySelector('.p2Symbol').value != '') {
-        if (document.querySelector('.p2Symbol').value.length >= 1) 
-        player1Symbol = document.querySelector('.p2Symbol').value.charAt(0);
-    }
-    document.querySelectorAll('.p1-name').forEach(function (name) {
-        document.querySelectorAll('.p1-name').textContent = player1;
-
-    })
-    document.querySelectorAll('.p2-name').forEach(function (name) {
-        document.querySelectorAll('.p2-name').textContent = player2;
-
-    })
-
+    startingFirst();
+    checkTurn();
+    score();
 }
 startingFirst();
 checkTurn();
 score();
+handleChangeInfo();
+document.querySelector('.player-info').style.display = "block";
+
 
 div.forEach(function (divPointer) {
-    divPointer.addEventListener('click',handleChangeDiv)
+     divPointer.addEventListener('click',handleChangeDiv)
 })
 newGame.addEventListener('click',handleNewGame);
 restartGame.addEventListener('click',handleRestartGame);

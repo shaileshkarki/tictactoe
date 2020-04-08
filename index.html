@@ -13,7 +13,7 @@
         </header>
         <section class="game-header">
             <div class="player-name">
-               <div>
+               <div class="player-info">
                     <input type="text" class="p1Name" placeholder="Player1 Name">
                     <input type="text" class="p1Symbol" placeholder="Player1 symbol: (default is X)">
                     <input type="text" class="p2Name" placeholder="Player2 Name">
@@ -23,8 +23,9 @@
             </div>
             <div class="scoreboard">
                 Score:<br>
-                <span class="p1-name">Player1</span>: <span class="p1"></span><br>
-                <span class="p2-name">Player2</span>: <span class="p2"></span><br>
+                <span class="p1-name"></span>: <span class="p1"></span><br>
+                <span class="p2-name"></span>: <span class="p2"></span><br>
+                <span>Draw</span>: <span class="draw"></span><br>
                 Total Games: <span class="total"></span>
             </div>
         </section>
@@ -45,7 +46,7 @@
             </div>
             <div class ="new"> <button class="new-btn">Play Again</button> 
                 <button class="restart-btn">Restart</button></div>
-            <div class="result"></div>
+            <div class="message"></div>
         </main>
     </div>
     <script src="app.js"></script>

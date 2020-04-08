@@ -7,7 +7,6 @@ body {
 main {
     width:50%;
     margin-left:25%;
-    margin-top: 25%;
 }
 .container {   
     display: grid;
@@ -19,19 +18,20 @@ main {
     justify-content: center;
     align-items: center;
     min-height: 100px;
+    min-width: 100px;
     width: 100%;
     background-color: antiquewhite;
     border: 2px solid black;
     font-size: 3rem;
 }
-.result, .turn, .new {
+.message, .turn, .new {
     text-align: center;
     margin: 10px;
     font-size: 2rem;
 }
 
 .winLine {
-    background-color: maroon;
+    background-color:maroon;
 }
 .game-header {
     width:100%;
@@ -52,3 +52,10 @@ main {
     padding-right: 25%;
     padding-top: 25%;
 }
+.player-info {
+    display: none;
+}
+/* .disabledbutton {
+    pointer-events: none;
+    opacity: 0.4;
+} */
