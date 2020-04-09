@@ -2,12 +2,12 @@
 
 Link: https://shaileshkarki.github.io/tictactoe/
 
-Tic Tac Toe is simple game built using:
+This Tic Tac Toe is simple app built using:
 i. HTML
 ii. CSS 
 iii. Javascript
 
-Steps needed to play this gamea are:
+Steps needed to play this game are:
 1. Start the app
 2. In the beginning players can choose to enter their name and symbol, if they wish to
 3. Else they can play using default name and symbol
