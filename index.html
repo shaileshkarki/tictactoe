@@ -5,48 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic Tac Toe</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="wrapper">
+        
         <header>
-
+            <h1>Tic Tac Toe</h1>
         </header>
-        <section class="game-header">
-            <div class="player-name">
-               <div class="player-info">
-                    <input type="text" class="p1Name" placeholder="Player1 Name">
-                    <input type="text" class="p1Symbol" placeholder="Player1 symbol: (default is X)">
-                    <input type="text" class="p2Name" placeholder="Player2 Name">
-                    <input type="text" class="p2Symbol" placeholder="Player2 symbol: (default is O)">
-                    <button class="change-info">Change</button>
+        
+        <main> 
+            <section class="game-header">
+                <div class="player-name">
+                   <div class="player-info">
+                        <input type="text" class="p1Name" placeholder="Player1 Name">
+                        <input type="text" class="p1Symbol" placeholder="Player1 symbol:(default is X)">
+                        <input type="text" class="p2Name" placeholder="Player2 Name">
+                        <input type="text" class="p2Symbol" placeholder="Player2 symbol:(default is O)">
+                        <button class="change-info">Change</button>
+                    </div>
                 </div>
-            </div>
-            <div class="scoreboard">
-                Score:<br>
-                <span class="p1-name"></span>: <span class="p1"></span><br>
-                <span class="p2-name"></span>: <span class="p2"></span><br>
-                <span>Draw</span>: <span class="draw"></span><br>
-                Total Games: <span class="total"></span>
-            </div>
-        </section>
-        <main>           
-            <div class="turn">
-            </div>
-            <div class="container">
-                <div class ="div0"></div>
-                <div class ="div1"></div>
-                <div class ="div2"></div>
-                <div class ="div3"></div>
-                <div class ="div4"></div>
-                <div class ="div5"></div>
-                <div class ="div6"></div>
-                <div class ="div7"></div>
-                <div class ="div8"></div>
-            </div>   
-            </div>
-            <div class ="new"> <button class="new-btn">Play Again</button> 
-                <button class="restart-btn">Restart</button></div>
-            <div class="message"></div>
+                <div class="scoreboard">
+                    
+                    Score:<br>
+                    <span class="p1-name"></span>: <span class="p1"></span><br>
+                    <span class="p2-name"></span>: <span class="p2"></span><br>
+                    <span>Draw</span>: <span class="draw"></span><br>
+                    Total Games: <span class="total"></span>
+                </div>
+            </section>    
+            <section>
+                <div class="turn">
+                </div>
+            </section> 
+            <section>
+                <div class="container">
+                    <div class ="div0"></div>
+                    <div class ="div1"></div>
+                    <div class ="div2"></div>
+                    <div class ="div3"></div>
+                    <div class ="div4"></div>
+                    <div class ="div5"></div>
+                    <div class ="div6"></div>
+                    <div class ="div7"></div>
+                    <div class ="div8"></div>
+                </div>   
+            </section>  
+            <section>
+                <div class ="new"> <button class="next-btn">Next Game</button> 
+                    <button class="restart-btn">Restart</button> <button class="close-btn">End</button>
+                </div>
+            </section>   
+            <section>
+                <div class="message"></div>
+            </section>
         </main>
     </div>
     <script src="app.js"></script>

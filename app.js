@@ -10,6 +10,8 @@ var numberOfGame = 0;
 var counter = 0;
 var arr = [1,2,3,4,5,6,7,8,9];
 var gameDecided = false;
+var boxColor = "#BFEFFF";
+var winColor = "maroon";
 var div = document.querySelectorAll('.container>div');
 var message = document.querySelector('.message');
 var turn = document.querySelector('.turn');
@@ -17,11 +19,12 @@ var score1 = document.querySelector('.p1');
 var score2 = document.querySelector('.p2');
 var tie = document.querySelector('.draw');
 var totalGames = document.querySelector('.total');
-var newGame = document.querySelector('.new-btn');
+var nextGame = document.querySelector('.next-btn');
+var closeGame = document.querySelector('.close-btn');
 var restartGame = document.querySelector('.restart-btn');
 var changeInfo = document.querySelector('.change-info');
 
-var handleChangeDiv = function (event) {   
+var handleChangeTicTacBox = function (event) {   
     if (checkDivEmpty(event.target.textContent) && !gameDecided) {
         var temp = Number(event.target.classList.item(0).charAt(3));
         if (turnToPlay == 1) {
@@ -34,16 +37,21 @@ var handleChangeDiv = function (event) {
         if (check[0]) {
             if (check[1] == player1Symbol) {
                 message.textContent = player1 + " won the game";
+                message.style.display = "block";
                 player1Win++;
             } else {
                 message.textContent = player2 + " won the game";
+                message.style.display = "block";
                 player2Win++;
             }
         } 
+        
         counter++;
+        document.querySelector('.scoreboard').style.display = "block";
         document.querySelector('.player-info').style.display = "none";
         if(counter == 9 && !check[0]) {
             message.textContent = "This game is Draw";
+            message.style.display = "block";
         }
         if(turnToPlay === 1) {
             turnToPlay = 2;
@@ -113,22 +121,22 @@ var score = function () {
 }
 
 var displayLine = function(num) {
-    div[num].style.backgroundColor = "maroon";
+    div[num].style.backgroundColor = winColor;
 }
 
-var handleNewGame = function () {
+var handleNextGame = function () {
     arr = [1,2,3,4,5,6,7,8,9];
     counter = 0;
-    //document.querySelector('.player-info').style.display = "block";
     numberOfGame++;
     if (!gameDecided) {
         draw++;
     }
     gameDecided = false;
-    message.textContent = ' ';
+    message.textContent = '';
+    message.style.display = "none";
     div.forEach(function (divPointer) {
         divPointer.textContent = '';
-        divPointer.style.backgroundColor = "antiquewhite";
+        divPointer.style.backgroundColor = boxColor;
         score();
         startingFirst();
     })
@@ -139,15 +147,16 @@ var startingFirst = function () {
     var number = Math.floor(Math.random() * 2) + 1;
     if (number === 1) {
         turnToPlay = 1;
-        turn.textContent = player1 + " will start the game";
+        turn.textContent = "First Player: " + player1;
     } else {
         turnToPlay = 2;
-        turn.textContent = player2 + " will start the game";
+        turn.textContent = "First Player: " + player2;
     }  
 }
 
-var handleRestartGame = function () {
-    location.reload();
+var handleClose = function () {
+   window.close();
+    // location.reload();
 }
 
 var handleChangeInfo = function () {
@@ -178,6 +187,22 @@ var handleChangeInfo = function () {
     checkTurn();
     score();
 }
+var handleRestart = function () {
+    if (gameDecided == false && counter != 9) {
+        arr = [1,2,3,4,5,6,7,8,9];
+        counter = 0;
+        gameDecided = false;
+        message.textContent = '';
+        message.style.display = "none";
+        div.forEach(function (divPointer) {
+            divPointer.textContent = '';
+            divPointer.style.backgroundColor = boxColor;
+            score();
+            startingFirst();
+        })
+    }
+
+}
 startingFirst();
 checkTurn();
 score();
@@ -186,9 +211,10 @@ document.querySelector('.player-info').style.display = "block";
 
 
 div.forEach(function (divPointer) {
-     divPointer.addEventListener('click',handleChangeDiv)
+     divPointer.addEventListener('click',handleChangeTicTacBox)
 })
-newGame.addEventListener('click',handleNewGame);
-restartGame.addEventListener('click',handleRestartGame);
+nextGame.addEventListener('click',handleNextGame);
+closeGame.addEventListener('click',handleClose);
+restartGame.addEventListener('click',handleRestart);
 changeInfo.addEventListener('click',handleChangeInfo);
 
