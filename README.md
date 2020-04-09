@@ -2,12 +2,12 @@
 
 Link: https://shaileshkarki.github.io/tictactoe/
 
-This Tic Tac Toe is simple app built using:
+##This Tic Tac Toe is simple app built using:
 i. HTML
 ii. CSS 
 iii. Javascript
 
-Steps needed to play this game are:
+##Steps needed to play this game are:
 1. Start the app
 2. In the beginning players can choose to enter their name and symbol, if they wish to
 3. Else they can play using default name and symbol
@@ -20,4 +20,8 @@ Steps needed to play this game are:
 10. When all boxes are filled, players can play another round by clicking on "Next Game" or exit the app by clicking on "End"
 11. Scores will be accumulated until players end the game
 12. There is an option to restart the game, if the game is not decided i.e., there is no win or draw
+
+##Approaches Taken
+There are 9 divs representing 9 boxes of tic tac toe. When a player clicks on a div/box that box is marked by the symbol assigned or chosen by the player. The value to that box is stored in an array to corresponding index so that it is easy to mark the box to be unclickable and also to check if there is a win or draw in the game. When the divs/ boxes are empty, the array is filled with the number 0 to 9. As player may click different box at different time, assigning numbers in the array helps in comparing values and it make sure it is not giving false result.
+Grid is used for layout.
 
