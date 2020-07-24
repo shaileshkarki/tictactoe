@@ -1,4 +1,4 @@
-# tictactoe
+# Tictactoe
 
 Link: https://shaileshkarki.github.io/tictactoe/
 
